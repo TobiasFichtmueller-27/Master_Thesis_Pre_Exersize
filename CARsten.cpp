@@ -9,7 +9,7 @@
 #include "Navigation.h"
 int main()
 {
-	World* world = new World(5, 3);
+	World* world = new World(10, 2);
 	Sensor* sensor = new Sensor(world);
 	Navigation* navigation = new Navigation(world, sensor, 0.9, 0.9);
 	Car* car = new Car(world, navigation);
