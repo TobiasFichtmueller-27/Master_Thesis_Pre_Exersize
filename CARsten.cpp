@@ -9,11 +9,24 @@
 #include "Navigation.h"
 int main()
 {
-	World* world = new World(10, 2);
+
+	//World(size, of which orange, start position of car) When creating a World one can adjust here the size of the World and the ratio of blue and orange fields by typing in the total of the orange fields and at last the position from where the car starts
+	
+	World* world = new World(10, 2, 0);
+
+	//The simulated sensor, that knows where the car is an then "sensores" the associated color
 	Sensor* sensor = new Sensor(world);
+
+	//Calculation of the Histogram Filter: Navigation(wold, sensor, accuracy of the steps, accuracy of the sensor)
 	Navigation* navigation = new Navigation(world, sensor, 0.9, 0.9);
+
+	//Class to handle the position and next steps
 	Car* car = new Car(world, navigation);
+
+	//Number of steps that should be executed
 	int steps = 12;
+
+	//Extraction in csv file
 	std::ofstream myfile;
 	myfile.open("histogramm.csv");
 

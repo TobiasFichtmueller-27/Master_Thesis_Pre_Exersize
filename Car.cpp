@@ -1,9 +1,12 @@
 #include "Car.h"
 
+//The car the steps of mooving and calculation come together
 Car::Car(World* world, Navigation* navigation) {
 	this->world = world;
 	this->navigation = navigation;
 }
+
+
 
 void Car::Move() {
 	this->navigation->Calculate_Position();

@@ -3,7 +3,7 @@
 class World
 {
 public:
-	World(int size, int ratio);
+	World(int size, int ratio, int car_start_position);
 	~World();
 
 	void Move_Car();

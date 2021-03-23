@@ -11,10 +11,8 @@ Navigation::Navigation(World* world,Sensor *sensor,double step_accuracy, double 
 	this->sensor_accuracy = sensor_accuracy;
 	this->values = new double[world->Get_Size()];
 
-	std::cout <<"SA"<< step_accuracy;
-	std::cout << "SE" << sensor_accuracy;
-	std::cout << "test" << (1 - step_accuracy) / 2;
 
+	//First step: The Filter does not know where it is, so he clud be on every field with the same percentage
 	for (int i = 0; i < world->Get_Size(); i++)
 	{
 		values[i] = 1 / (double)world->Get_Size();
@@ -25,10 +23,14 @@ Navigation::~Navigation() {
 	delete[] values;
 }
 
+
+//Here the actual calculation of the filter is done
 void Navigation::Calculate_Position() {
 
     
 	double* tmp = new double[world->Get_Size()];
+
+	//First formular where the car does one step - or not
 	for (int i = 0; i < world->Get_Size(); i++)
 	{
 		tmp[i] = values[i] * ((1-step_accuracy)/2);
@@ -37,6 +39,8 @@ void Navigation::Calculate_Position() {
 	}
 
 	double sum = 0;
+
+	//Second formular: inclusion of the sensordata
 	for (int i = 0; i < world->Get_Size(); i++)
 	{
 		if (world->Get_Color_At(i) == sensor->Get_Color())
